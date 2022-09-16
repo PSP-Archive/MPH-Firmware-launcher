@@ -1,5 +1,6 @@
 TARGET = out
-OBJS = $(wildcard *.c Utils/*.c)
+SRCS = $(wildcard *.c Utils/*.c)
+OBJS=$(SRCS:.c=.o)
 
 INCDIR =
 CFLAGS = -O2 -G0 -Wall

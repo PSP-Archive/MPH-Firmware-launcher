@@ -11,17 +11,17 @@
 
 */
 
-// CONFIG.C ET .H est OK (verifié, testé)
-// RAM.C ET .H est OK (verifié, testé)
-// IMAGE.C et .H OK (verifié, testé)
-// VRAM.C et .H est OK (verifié, testé)
-// IMAGEBMP <- A TERMINER MAIS OK POUR LA MEMOIRE (verifié, testé)
-// LANGUAGE <- OK (verifié, testé)
-// MENU.C ET .H corrigé (verifié, testé)
-// FONT.C ET .H OK (verifié, testé)
-// PSARDUMP.C ET .H OK (verifié, testé)
-// FILE.C ET .H OK (verifié, testé)
-// GRAPHIC.C ET .H OK normalement (verifié presque entierement, reste plus que les blit mais normalement c bon)
+// CONFIG.C ET .H est OK (verifiï¿½, testï¿½)
+// RAM.C ET .H est OK (verifiï¿½, testï¿½)
+// IMAGE.C et .H OK (verifiï¿½, testï¿½)
+// VRAM.C et .H est OK (verifiï¿½, testï¿½)
+// IMAGEBMP <- A TERMINER MAIS OK POUR LA MEMOIRE (verifiï¿½, testï¿½)
+// LANGUAGE <- OK (verifiï¿½, testï¿½)
+// MENU.C ET .H corrigï¿½ (verifiï¿½, testï¿½)
+// FONT.C ET .H OK (verifiï¿½, testï¿½)
+// PSARDUMP.C ET .H OK (verifiï¿½, testï¿½)
+// FILE.C ET .H OK (verifiï¿½, testï¿½)
+// GRAPHIC.C ET .H OK normalement (verifiï¿½ presque entierement, reste plus que les blit mais normalement c bon)
 // IMAGEPNG <- OK MAIS fopen, fclose font perdre 384 octets !! ?
 
 // VERIFIER LES STRUCTURES AVEC SCEIOREAD ET SIZEOF PARCE QU'ELLE SONT ALIGNEES ET CA PEUT FAUSSER LE CODE
@@ -262,7 +262,7 @@ u32 menuFunc_main (void)
  if (mainOption.enableUsb)
   sceUsbActivate(0x1C8);
  else
-  sceUsbDeactivate();
+  sceUsbDeactivate(0);
 
  // Delete old bar if exist
  menuBarDelete(mainMenu->bar);
@@ -1540,7 +1540,7 @@ u32 menuFunc_choose (MenuSub *sub)
   if (!(strncasecmp(sub2->name,mainChoosePath,strlen(sub2->name)))) cur = sub2;
 
   // If UMD present
-  if (sceUmdCheckMedium(0))
+  if (sceUmdCheckMedium())
   {
    // Mount UMD to disc0: file system
    sceUmdActivate(1,FILE_DEVICE_UMD);
@@ -1775,7 +1775,7 @@ void mainExit (u32 save)
  languageFree();
 
  // Cleanup usb
- sceUsbDeactivate();
+ sceUsbDeactivate(0);
  sceUsbStop(PSP_USBSTOR_DRIVERNAME,0,0);
  sceUsbStop(PSP_USBBUS_DRIVERNAME,0,0);
 
@@ -1904,7 +1904,7 @@ int main (int argc, char *argv[])
  sceUsbStart(PSP_USBBUS_DRIVERNAME,0,0);
  sceUsbStart(PSP_USBSTOR_DRIVERNAME,0,0);
  sceUsbstorBootSetCapacity(0x800000);
- sceUsbDeactivate();
+ sceUsbDeactivate(0);
 
  // Find the path of program
  strcpy(mainPath,argv[0]);
